@@ -1,0 +1,7 @@
+- Move UI upwards based on additional row amounts
+- Fix seams in certain tables (math is definitely wrong but im annoyed and dont want to fix it now)
+- Shift clicking behaviors with extended UI (figure out a way to generalize them, if not, its fine)
+
+- Accessories (Custom Menu) support
+- Fix Oritech eventually (low priority)
+- Fix Sophisticated Backpacks (??? do they just reimplement the inventory?)

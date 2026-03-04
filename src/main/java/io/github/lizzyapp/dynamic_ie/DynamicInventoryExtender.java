@@ -1,6 +1,7 @@
 package io.github.lizzyapp.dynamic_ie;
 
 import io.github.lizzyapp.dynamic_ie.accessor.IStoredPointAccessor;
+import io.github.lizzyapp.dynamic_ie.api.client.MenuRenderContext;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
@@ -99,6 +100,11 @@ public class DynamicInventoryExtender {
         int cutoffValue = (((rowBottom - relativeTopY) - 1) / 2) * 2;
         float percentage = (float) cutoffValue / (textureHeight);
 
+        // used solely to ensure (guess) this is an inventory texture
+        int textureWidth = (x2 - x1);
+        if (textureWidth < ((DEFAULT_SLOT_SEPARATION * DEFAULT_ROW_SIZE) - 4))
+            return false;
+
         if (rowBottom > relativeTopY && rowBottom <= (relativeTopY + textureHeight) && percentage < 1) {
             float percentageExtension = percentage + ((float) DEFAULT_SLOT_SEPARATION / textureHeight);
             guiGraphics.innerBlit(atlasLocation,
@@ -115,6 +121,7 @@ public class DynamicInventoryExtender {
                     (maxV * percentage) , maxV
                 );
             }
+//            MenuRenderContext.clearContext();
             return true;
         }
         return false;
