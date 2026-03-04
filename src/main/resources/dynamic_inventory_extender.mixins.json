@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "io.github.lizzyapp.dynamic_ie.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin",
+  "mixins": [
+    "AbstractContainerMenuMixin",
+    "integration.AbstractSimiContainerScreenMixin",
+    "InventoryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "client.AbstractContainerScreenMixin",
+    "client.GuiGraphicsMixin"
+  ]
+}
