@@ -25,6 +25,10 @@ public abstract class GuiGraphicsMixin {
     @Unique private boolean dynamicIE$recursive = false;
     @Unique private GuiGraphics dynamicIE$self = (GuiGraphics) (Object) this;
 
+    /**
+     * Called when GuiGraphics renders an interface to the screen.
+     * Generally only takes action if the interface contains the player's inventory.
+     */
     @Inject(method = "innerBlit(Lnet/minecraft/resources/ResourceLocation;IIIIIFFFF)V", at = @At("HEAD"), cancellable = true)
     private void dynamicIE$innerBlit(
         ResourceLocation atlasLocation,
@@ -34,8 +38,11 @@ public abstract class GuiGraphicsMixin {
     ) {
         if (!dynamicIE$recursive) {
             dynamicIE$recursive = true;
+
+            // If we are in an AbstractContainerScreen...
             AbstractContainerScreen<?> contextMenu = MenuRenderContext.getContext();
             if (contextMenu != null) {
+                // ...attempt to render the custom inventory slots.
                 if (DynamicInventoryExtender.debugRender(
                     (GuiGraphics) (Object) this, contextMenu, atlasLocation, x1, x2, y1, y2, blitOffset, minU, maxU, minV, maxV))
                     ci.cancel();

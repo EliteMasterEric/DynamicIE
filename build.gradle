@@ -20,6 +20,9 @@ group = mod_group_id
 repositories {
     mavenLocal()
     maven {url "https://maven.createmod.net" }
+
+    maven { url = "https://maven.blamejared.com/" } // JEI
+    maven { url = "https://modmaven.dev" } // JEI (Fallback)
 }
 
 base {
@@ -119,7 +122,15 @@ dependencies {
                 module: "slf4j-api"
     })
 
+    // Use compileOnly() to include the mod during compilation and exclude it during playtesting.
+    // Use runtimeOnly() to include the mod only during playtesting.
+    // Use implementation() to include the mod in both compilation and playtesting.
+
+    // Create
     compileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}")
+
+    // JEI
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}") // JEI Mod
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

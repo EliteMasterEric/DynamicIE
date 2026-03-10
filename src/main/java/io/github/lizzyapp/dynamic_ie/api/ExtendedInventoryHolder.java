@@ -1,6 +1,5 @@
 package io.github.lizzyapp.dynamic_ie.api;
 
-import io.github.lizzyapp.dynamic_ie.DynamicInventoryExtender;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
@@ -8,6 +7,9 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An object which holds the player's additional inventory slots.
+ */
 public class ExtendedInventoryHolder {
     private final NonNullList<ItemStack> extendedItems;
     public NonNullList<ItemStack> get() {
