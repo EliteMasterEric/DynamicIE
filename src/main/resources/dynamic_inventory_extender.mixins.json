@@ -6,7 +6,8 @@
   "mixins": [
     "AbstractContainerMenuMixin",
     "integration.AbstractSimiContainerScreenMixin",
-    "InventoryMixin"
+    "InventoryMixin",
+    "PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

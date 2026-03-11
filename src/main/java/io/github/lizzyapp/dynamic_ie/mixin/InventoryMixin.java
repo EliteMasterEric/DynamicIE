@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import io.github.lizzyapp.dynamic_ie.DynamicInventoryExtender;
+import io.github.lizzyapp.dynamic_ie.accessor.IExtendedInventoryHolderAccessor;
 import io.github.lizzyapp.dynamic_ie.api.ExtendedInventoryHolder;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponents;
@@ -30,18 +31,25 @@ import net.minecraft.world.item.ItemStack;
  * and redirect inventory access to them when necessary.
  */
 @Mixin(Inventory.class)
-public class InventoryMixin {
+public class InventoryMixin implements IExtendedInventoryHolderAccessor {
 
     @Final @Shadow private List<NonNullList<ItemStack>> compartments;
 
     @Unique Optional<ExtendedInventoryHolder> dynamicIE$extendedHolder;
+
+    @Override
+    public Optional<ExtendedInventoryHolder> dynamicIE$getExtendedInventoryHolder() {
+        return dynamicIE$extendedHolder;
+    }
 
     /**
      * When the player's inventory is initialized, instantiate a new ExtendedInventoryHolder to hold the additional slots.
      */
     @Inject(method = "<init>", at = @At("TAIL"))
     public void dynamicIE$extendItemList(Player player, CallbackInfo ci) {
-        dynamicIE$extendedHolder = Optional.of(new ExtendedInventoryHolder(DynamicInventoryExtender.getExtraSlotCount()));
+        dynamicIE$extendedHolder = Optional.of(
+            new ExtendedInventoryHolder(((Inventory) (Object) this), DynamicInventoryExtender.getExtraSlotCount())
+        );
     }
 
     /**
@@ -54,7 +62,6 @@ public class InventoryMixin {
             return dynamicIE$extendedHolder.get().extendedCompartments(original);
         return original;
     }
-
 
     /**
      * If the ExtendedInventoryHolder is initialized, check it for free slots if the base inventory is full when trying to add an item.

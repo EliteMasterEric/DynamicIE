@@ -14,8 +14,9 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 
 /* This extends AbstractContainer, so there's really no need, but regardless this is cleaner */
-@IfModLoaded("create")
+@SuppressWarnings("rawtypes")
 @Mixin(AbstractSimiContainerScreen.class)
+@IfModLoaded("create")
 public class AbstractSimiContainerScreenMixin<T extends AbstractContainerMenu> {
 
     @Inject(method="renderPlayerInventory", at = @At("HEAD"))
