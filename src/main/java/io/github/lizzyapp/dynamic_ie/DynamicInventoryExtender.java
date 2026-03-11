@@ -1,17 +1,17 @@
 package io.github.lizzyapp.dynamic_ie;
 
+import org.slf4j.Logger;
+
+import com.mojang.logging.LogUtils;
+
 import io.github.lizzyapp.dynamic_ie.accessor.IStoredPointAccessor;
 import io.github.lizzyapp.dynamic_ie.util.InventorySlotUtil;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.resources.ResourceLocation;
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
 
 @Mod(DynamicInventoryExtender.MODID)
 public class DynamicInventoryExtender {

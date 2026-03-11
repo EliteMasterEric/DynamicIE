@@ -1,13 +1,9 @@
 package io.github.lizzyapp.dynamic_ie.mixin;
 
-import io.github.lizzyapp.dynamic_ie.DynamicInventoryExtender;
-import io.github.lizzyapp.dynamic_ie.accessor.IStoredPointAccessor;
-import io.github.lizzyapp.dynamic_ie.util.InventorySlotUtil;
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.Container;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.Slot;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,9 +12,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
+import io.github.lizzyapp.dynamic_ie.DynamicInventoryExtender;
+import io.github.lizzyapp.dynamic_ie.accessor.IStoredPointAccessor;
+import io.github.lizzyapp.dynamic_ie.util.InventorySlotUtil;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.Slot;
 
 /**
  * A mixin into every AbstractContainerMenu,

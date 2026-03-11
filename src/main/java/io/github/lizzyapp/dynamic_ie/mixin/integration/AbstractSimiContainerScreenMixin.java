@@ -1,16 +1,17 @@
 package io.github.lizzyapp.dynamic_ie.mixin.integration;
 
-import com.moulberry.mixinconstraints.annotations.IfModLoaded;
-import com.simibubi.create.foundation.gui.menu.AbstractSimiContainerScreen;
-import io.github.lizzyapp.dynamic_ie.api.client.MenuRenderContext;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import com.moulberry.mixinconstraints.annotations.IfModLoaded;
+import com.simibubi.create.foundation.gui.menu.AbstractSimiContainerScreen;
+
+import io.github.lizzyapp.dynamic_ie.api.client.MenuRenderContext;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 
 /* This extends AbstractContainer, so there's really no need, but regardless this is cleaner */
 @IfModLoaded("create")

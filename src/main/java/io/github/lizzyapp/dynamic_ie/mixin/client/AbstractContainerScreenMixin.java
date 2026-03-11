@@ -1,17 +1,18 @@
 package io.github.lizzyapp.dynamic_ie.mixin.client;
 
-import io.github.lizzyapp.dynamic_ie.api.client.MenuRenderContext;
-import io.github.lizzyapp.dynamic_ie.util.InventorySlotUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import io.github.lizzyapp.dynamic_ie.api.client.MenuRenderContext;
+import io.github.lizzyapp.dynamic_ie.util.InventorySlotUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 
 @SuppressWarnings("rawtypes")
 @Mixin(AbstractContainerScreen.class)

@@ -1,11 +1,11 @@
 package io.github.lizzyapp.dynamic_ie.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * An object which holds the player's additional inventory slots.
