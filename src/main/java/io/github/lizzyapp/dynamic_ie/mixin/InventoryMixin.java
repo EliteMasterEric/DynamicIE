@@ -114,6 +114,33 @@ public class InventoryMixin {
         cir.setReturnValue(Component.literal("Inventorrgy"));
     }
 
+    /**
+     * If the ExtendedInventoryHolder is initialized, check it for any items matching the given stack and return the index of the first match.
+     */
+    @Inject(method = "findSlotMatchingUnusedItem", at = @At("RETURN"), cancellable = true)
+    public void dynamicIE$findSlotMatchingUnusedItem(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
+        // We can skip if the base inventory already has an instance of the item.
+        boolean unusedItemNotFound = cir.getReturnValue() == -1;
+
+        if (unusedItemNotFound) {
+            dynamicIE$extendedHolder.ifPresent((holder) -> {
+                NonNullList<ItemStack> extendedItems = holder.get();
+                for (int i = 0; i < extendedItems.size(); i++) {
+                    ItemStack itemStack = extendedItems.get(i);
+                    if (itemStack.isEmpty()) continue;
+                    if (!ItemStack.isSameItemSameComponents(stack, itemStack)) continue;
+
+                    boolean isDamaged = itemStack.isDamaged() || itemStack.isEnchanted() || itemStack.has(DataComponents.CUSTOM_NAME);
+                    if (isDamaged) continue;
+
+                    // We found an instance of the item! Return its index and immediately stop searching.
+                    cir.setReturnValue(holder.getAbsoluteIndex(i));
+                    return;
+                }
+			});
+        }
+    }
+
     // Modify the access to `Inventory.compartments` in all methods that access it, to redirect to the extended inventory.
 
     @ModifyExpressionValue(method = "getItem", at = @At(value = "FIELD", target = "Lnet/minecraft/world/entity/player/Inventory;compartments:Ljava/util/List;", opcode = Opcodes.GETFIELD))
